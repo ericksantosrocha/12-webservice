@@ -3,6 +3,7 @@ package br.com.fiap.resource;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -61,5 +62,11 @@ public class ProdutoResource {
 	}
 	
 	//Remover
+	@DELETE
+	@Path("/{id}")
+	public void remover(@PathParam("id")int codigo){
+		bo.remover(codigo);
+	}
+	
 	
 }
