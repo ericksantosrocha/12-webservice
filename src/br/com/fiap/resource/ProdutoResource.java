@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -37,6 +38,7 @@ public class ProdutoResource {
 		return bo.listar();
 	}
 	
+	//Cadastrar
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response cadastrar(ProdutoTO produto,@Context UriInfo uriInfo){
@@ -47,5 +49,17 @@ public class ProdutoResource {
 		//Status 201 - create
 		return Response.created(url.build()).build(); 
 	}
+	
+	//Atualizar
+	@PUT
+	@Path("/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response atualizar(ProdutoTO produto,@PathParam("id") int codigo){
+		produto.setCodigo(codigo);
+		bo.alterar(produto);
+		return Response.ok().build();
+	}
+	
+	//Remover
 	
 }
